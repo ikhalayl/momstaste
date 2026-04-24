@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mom's Taste — Handmade with Love</title>
+
+  <!-- SEO & Social sharing -->
+  <meta name="description" content="Handmade baked goods in Kitchener–Waterloo. Order Ma'amoul, baklava, ka'ak, croissants and more from Mom's Taste — made fresh, every order." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Mom's Taste — Handmade Baked Goods" />
+  <meta property="og:description" content="Freshly baked to order in Kitchener–Waterloo. Ma'amoul, baklava, breads and more — crafted from scratch." />
+  <meta property="og:image"       content="https://momstaste.netlify.app/images/logo.png" />
+  <meta property="og:image:width" content="500" />
+  <meta property="og:image:height" content="500" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:image"      content="https://momstaste.netlify.app/images/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Mom's Taste",
+    "description": "Handmade baked goods crafted from scratch and delivered locally in Kitchener–Waterloo.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Kitchener", "addressRegion": "ON", "addressCountry": "CA" },
+    "telephone": "+12265014912",
+    "email": "momstastegoods@hotmail.com",
+    "sameAs": [
+      "https://instagram.com/momstaste42",
+      "https://www.tiktok.com/@moms.taste5",
+      "https://www.facebook.com/people/Moms-Taste/61573925998958/"
+    ],
+    "servesCuisine": "Middle Eastern Bakery",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <!-- Font performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:      #FAF6EF;
+      --cream-mid:  #F2E8D5;
+      --amber:      #C8860A;
+      --amber-lt:   #E8A920;
+      --brown:      #3B2007;
+      --brown-mid:  #6B3A1F;
+      --brown-lt:   #9A6540;
+      --warm-white: #FFFDF8;
+      --sidebar-w:  240px;
+    }
+
+    html, body {
+      height: 100dvh;
+      overflow: hidden;
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      line-height: 1.75;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.25; }
+
+    /* ── APP SHELL ── */
+    .app-shell {
+      display: flex;
+      height: 100dvh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      height: 100dvh;
+      background: var(--warm-white);
+      border-right: 1px solid var(--cream-mid);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.25rem 1.5rem;
+      overflow-y: auto;
+      text-align: center;
+    }
+
+    .sidebar-logo {
+      width: 108px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 2px 12px rgba(59,32,7,0.13));
+    }
+
+    .sidebar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.2rem;
+    }
+
+    .sidebar-tagline {
+      font-size: 0.72rem;
+      color: var(--brown-lt);
+      line-height: 1.55;
+      margin-bottom: 1.75rem;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--cream-mid);
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      flex: 1;
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.95rem 1rem;
+      border: none;
+      background: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--brown-lt);
+      text-align: left;
+      width: 100%;
+      transition: background 0.18s, color 0.18s;
+    }
+
+    .sidebar-btn svg {
+      flex-shrink: 0;
+      opacity: 0.45;
+      transition: opacity 0.18s;
+    }
+
+    .sidebar-btn.active {
+      background: rgba(200,134,10,0.1);
+      color: var(--amber);
+    }
+
+    .sidebar-btn.active svg { opacity: 1; }
+
+    .sidebar-btn:hover:not(.active) {
+      background: var(--cream-mid);
+      color: var(--brown);
+    }
+
+    .sidebar-btn:hover:not(.active) svg { opacity: 0.75; }
+
+    .sidebar-footer {
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--cream-mid);
+      margin-top: 1.5rem;
+      width: 100%;
+      text-align: center;
+    }
+
+    .sidebar-follow-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      opacity: 0.55;
+      margin-bottom: 0.65rem;
+    }
+
+    .sidebar-socials {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--cream-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown-lt);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .sidebar-social-icon:hover {
+      background: var(--amber);
+      color: #fff;
+    }
+
+    .sidebar-copy {
+      font-size: 0.68rem;
+      color: var(--brown-lt);
+      opacity: 0.45;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      flex: 1;
+      height: 100dvh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* ── TAB PANELS ── */
+    .tab-panel {
+      display: none;
+      min-height: 100%;
+      padding: 3rem 2.5rem;
+    }
+
+    .tab-panel.active { display: block; }
+
+    /* ── SECTION HELPERS ── */
+    .section-inner { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 2rem;
+    }
+
+    /* ── HOME ── */
+    .tab-panel.home { background: var(--cream); padding: 2rem; }
+
+    .tab-panel.home.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+    }
+
+    .home-inner {
+      text-align: center;
+      max-width: 520px;
+      padding: 3rem 1.5rem;
+    }
+
+    .home-logo {
+      width: 230px;
+      margin-bottom: 1.75rem;
+      filter: drop-shadow(0 4px 22px rgba(59,32,7,0.14));
+    }
+
+    .home-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .home-welcome {
+      display: block;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--brown-lt);
+    }
+
+    .home-brand {
+      display: block;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    .home-rule {
+      width: 56px;
+      height: 2px;
+      background: var(--amber);
+      margin: 1.1rem auto 1.3rem;
+      border: none;
+    }
+
+    .home-tagline {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.75rem;
+    }
+
+    .home-desc {
+      font-size: 1.05rem;
+      color: var(--brown-mid);
+      line-height: 1.85;
+      margin-bottom: 2.75rem;
+    }
+
+    .home-ctas {
+      display: flex;
+      gap: 0.9rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .home-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .home-cta:hover { transform: translateY(-2px); }
+
+    .home-cta-primary {
+      background: var(--amber);
+      color: #fff;
+      border-color: var(--amber);
+    }
+    .home-cta-primary:hover { background: #b07609; border-color: #b07609; }
+
+    .home-cta-secondary {
+      background: transparent;
+      color: var(--brown);
+      border-color: var(--cream-mid);
+    }
+    .home-cta-secondary:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── FOLLOW US STRIP (mobile & tablet only) ── */
+    .panel-follow-us {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 2rem 0 0.5rem;
+      border-top: 1px solid var(--cream-mid);
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .panel-follow-us { display: flex; }
+    }
+
+    .tab-panel.contact .panel-follow-us { border-top-color: rgba(250,246,239,0.12); }
+
+    .panel-follow-us-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      opacity: 0.55;
+    }
+
+    .tab-panel.contact .panel-follow-us-label { color: rgba(250,246,239,0.4); opacity: 1; }
+
+    .panel-follow-us-icons {
+      display: flex;
+      gap: 0.65rem;
+    }
+
+    .panel-social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--cream-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown-lt);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab-panel.contact .panel-social-icon { background: rgba(255,255,255,0.1); color: rgba(250,246,239,0.6); }
+
+    .panel-social-icon:hover { background: var(--amber); color: #fff; }
+
+    /* ── PRODUCTS ── */
+    .category-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .cat-tile {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      height: clamp(260px, 42vh, 420px);
+    }
+
+    .cat-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .cat-tile:hover img { transform: scale(1.05); }
+
+    .cat-tile-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,14,4,0.82) 0%, rgba(30,14,4,0.08) 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.75rem 2rem;
+      transition: background 0.3s;
+    }
+
+    .cat-tile:hover .cat-tile-overlay {
+      background: linear-gradient(to top, rgba(30,14,4,0.9) 0%, rgba(30,14,4,0.18) 55%);
+    }
+
+    .cat-tile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+
+    .cat-tile-count {
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1rem;
+    }
+
+    .cat-tile-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      transition: gap 0.2s;
+    }
+
+    .cat-tile:hover .cat-tile-cta { gap: 0.7rem; }
+
+    @media (max-width: 560px) {
+      .category-tiles { grid-template-columns: 1fr; }
+      .cat-tile { height: clamp(200px, 38vw, 280px); }
+    }
+
+    .cat-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 2rem;
+      transition: color 0.18s;
+    }
+
+    .cat-back:hover { color: var(--amber); }
+
+    .cat-panel { display: none; }
+    .cat-panel.active { display: block; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .product-card {
+      background: var(--warm-white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--cream-mid);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(59,32,7,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-info {
+      padding: 0.8rem 0.9rem;
+    }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 0.25rem;
+      line-height: 1.3;
+    }
+
+    .product-price {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-desc {
+      font-size: 0.75rem;
+      color: var(--brown-lt);
+      line-height: 1.5;
+      margin-top: 0.1rem;
+    }
+
+    /* ── PRODUCTS SECTION TITLE ── */
+    .tab-panel.products .section-title {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--brown);
+      text-align: center;
+      letter-spacing: 0.03em;
+      padding: 1rem 0 1.75rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .tab-panel.products .section-title::before {
+      content: '✦';
+      display: block;
+      font-size: 1.2rem;
+      font-style: normal;
+      color: var(--amber);
+      letter-spacing: 0;
+      margin-bottom: 0.65rem;
+    }
+    .tab-panel.products .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 48px; height: 1px;
+      background: var(--amber);
+    }
+
+    /* ── GALLERY ── */
+    .tab-panel.products { background: var(--cream); }
+    .tab-panel.products .section-inner { max-width: 1100px; }
+
+    .gallery-section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 2rem;
+    }
+
+    .gallery-section-divider::before,
+    .gallery-section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--cream-mid);
+    }
+
+    .gallery-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      white-space: nowrap;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+@media (max-width: 640px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 641px) and (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      aspect-ratio: 1;
+      background: var(--cream-mid);
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(59,32,7,0);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    .gallery-item:hover .overlay { background: rgba(59,32,7,0.35); }
+
+    .gallery-item .overlay span {
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .gallery-item:hover .overlay span { opacity: 1; transform: translateY(0); }
+
+    .gallery-more {
+      text-align: center;
+      margin-top: 1.75rem;
+      font-size: 0.92rem;
+      color: var(--brown-lt);
+    }
+
+    .gallery-more a { color: var(--amber); text-decoration: none; font-weight: 600; }
+    .gallery-more a:hover { text-decoration: underline; }
+
+    /* ── ABOUT ── */
+    .tab-panel.about { background: var(--warm-white); }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      color: var(--brown-mid);
+      line-height: 1.85;
+    }
+
+    .about-image-wrap { position: relative; }
+
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 2px solid var(--amber);
+      border-radius: 4px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .about-image {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 4px;
+      display: block;
+    }
+
+    /* ── CONTACT ── */
+    .tab-panel.contact {
+      background: var(--brown);
+      border-top: 4px solid var(--amber);
+    }
+
+    .contact .section-label { color: var(--amber-lt); }
+    .contact .section-title { color: var(--cream); }
+
+    .contact-sub {
+      font-size: 1.05rem;
+      color: rgba(250,246,239,0.7);
+      max-width: 520px;
+      margin-bottom: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .contact-sub strong { color: var(--amber-lt); }
+
+    .contact-sub:last-of-type { margin-bottom: 2.5rem; }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 3px;
+      border: 2px solid transparent;
+      transition: background 0.22s, border-color 0.22s, transform 0.15s;
+    }
+
+    .contact-btn:hover { transform: translateY(-2px); }
+
+    .btn-whatsapp { background: #25D366; color: #fff; }
+    .btn-whatsapp:hover { background: #1ebe5d; }
+
+    .btn-email {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(250,246,239,0.4);
+    }
+    .btn-email:hover { background: rgba(250,246,239,0.1); border-color: var(--cream); }
+
+    .btn-instagram {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(250,246,239,0.4);
+    }
+    .btn-instagram:hover { background: rgba(250,246,239,0.1); border-color: var(--cream); }
+
+    .contact-note {
+      font-size: 0.85rem;
+      color: rgba(250,246,239,0.45);
+      letter-spacing: 0.04em;
+      margin-top: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-socials { margin-top: 1rem; }
+
+    .contact-socials-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,246,239,0.4);
+      margin-bottom: 0.85rem;
+    }
+
+    .contact-socials-icons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-socials-icons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250,246,239,0.5);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .contact-socials-icons a:hover { color: var(--amber-lt); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { margin-bottom: 2.5rem; }
+
+    .testimonials-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 1.25rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(250,246,239,0.12);
+      border-radius: 6px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .testimonial-card p {
+      font-size: 0.95rem;
+      color: rgba(250,246,239,0.85);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    .testimonial-card cite {
+      font-size: 0.78rem;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+    }
+
+    /* ── MOBILE: TOP BAR ── */
+    .top-bar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 56px;
+      background: rgba(250,246,239,0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--cream-mid);
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── MOBILE: BOTTOM NAV ── */
+    .bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      background: var(--warm-white);
+      border-top: 1px solid var(--cream-mid);
+    }
+
+    .bottom-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brown-lt);
+      transition: color 0.18s;
+    }
+
+    .bottom-btn svg { opacity: 0.4; transition: opacity 0.18s; }
+    .bottom-btn.active { color: var(--amber); }
+    .bottom-btn.active svg { opacity: 1; }
+
+    @media (max-width: 700px) {
+      .sidebar { display: none; }
+      .top-bar { display: flex; }
+      .bottom-nav { display: flex; }
+      .main-content { padding-top: 56px; padding-bottom: 64px; }
+      .tab-panel { padding: 2rem 1.25rem; }
+    }
+
+    /* ── FLOATING WHATSAPP ── */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .wa-float { bottom: 4.75rem; }
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.28);
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .gallery-item img { transition: transform 0.4s ease; }
+      .gallery-item:hover img { transform: scale(1.04); }
+      .gallery-item .overlay { transition: background 0.3s; }
+      .gallery-item .overlay span { transition: opacity 0.3s, transform 0.3s; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gallery-item img,
+      .gallery-item .overlay,
+      .gallery-item .overlay span { transition: none; }
+      .gallery-item:hover img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile: top bar -->
+  <header class="top-bar">Mom's Taste</header>
+
+  <div class="app-shell">
+
+    <!-- ══════════════════════════════
+         SIDEBAR (desktop)
+    ══════════════════════════════ -->
+    <aside class="sidebar">
+      <img src="images/logo.png" alt="Mom's Taste logo" class="sidebar-logo" />
+      <div class="sidebar-brand">Mom's Taste</div>
+      <p class="sidebar-tagline">Handmade baked goods<br>Kitchener–Waterloo</p>
+      <div class="sidebar-divider"></div>
+
+      <nav class="sidebar-nav" role="tablist" aria-label="Page sections">
+
+        <button class="sidebar-btn active" data-tab="home" role="tab" aria-selected="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          Home
+        </button>
+
+        <button class="sidebar-btn" data-tab="products" role="tab" aria-selected="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+          </svg>
+          Products
+        </button>
+
+        <button class="sidebar-btn" data-tab="about" role="tab" aria-selected="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+          Our Story
+        </button>
+
+        <button class="sidebar-btn" data-tab="contact" role="tab" aria-selected="false">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          Order
+        </button>
+
+      </nav>
+
+      <div class="sidebar-footer">
+        <p class="sidebar-follow-label">Follow us</p>
+        <div class="sidebar-socials">
+          <a href="https://instagram.com/momstaste42" class="sidebar-social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@moms.taste5" class="sidebar-social-icon" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/people/Moms-Taste/61573925998958/" class="sidebar-social-icon" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="sidebar-copy">&copy; 2026 Mom's Taste</p>
+      </div>
+    </aside>
+
+    <!-- ══════════════════════════════
+         MAIN CONTENT
+    ══════════════════════════════ -->
+    <main class="main-content">
+
+      <!-- HOME PANEL -->
+      <div class="tab-panel active home" id="tab-home" role="tabpanel">
+        <div class="home-inner">
+          <img src="images/logo.png" alt="Mom's Taste" class="home-logo" />
+          <h1 class="home-heading">
+            <span class="home-welcome">Welcome to</span>
+            <span class="home-brand">Mom's Taste</span>
+          </h1>
+          <hr class="home-rule" />
+          <p class="home-tagline">Handmade baked goods &nbsp;·&nbsp; Kitchener–Waterloo</p>
+          <p class="home-desc">
+            Made from scratch. Crafted by hand with care.<br>
+            Freshly prepared for you.
+          </p>
+          <div class="home-ctas">
+            <button class="home-cta home-cta-primary" data-tab="products">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              </svg>
+              See Our Menu
+            </button>
+            <button class="home-cta home-cta-secondary" data-tab="contact">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+              </svg>
+              Place an Order
+            </button>
+          </div>
+
+          <div class="panel-follow-us">
+            <p class="panel-follow-us-label">Follow us</p>
+            <div class="panel-follow-us-icons">
+              <a href="https://instagram.com/momstaste42" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="https://www.tiktok.com/@moms.taste5" class="panel-social-icon" target="_blank" rel="noopener" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg></a>
+              <a href="https://www.facebook.com/people/Moms-Taste/61573925998958/" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTS PANEL -->
+      <div class="tab-panel products" id="tab-products" role="tabpanel">
+        <div class="section-inner">
+          <p class="section-label">Our Menu</p>
+          <h2 class="section-title">Baked fresh for every order</h2>
+
+          <!-- CATEGORY TILES -->
+          <div class="category-tiles" id="cat-tiles">
+            <div class="cat-tile" onclick="showCategory('bakery')">
+              <img src="images/p_stuffed_baked_buns.jpeg" alt="Bakery" />
+              <div class="cat-tile-overlay">
+                <p class="cat-tile-name">Bakery</p>
+              </div>
+            </div>
+            <div class="cat-tile" onclick="showCategory('sweets')">
+              <img src="images/sweets_tile.jpeg" alt="Sweets" />
+              <div class="cat-tile-overlay">
+                <p class="cat-tile-name">Sweets</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- BAKERY -->
+          <div class="cat-panel" id="cat-bakery">
+            <button class="cat-back" onclick="showTiles()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              All Categories
+            </button>
+            <div class="product-grid">
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_stuffed_baked_buns.jpeg" alt="Stuffed Buns" />
+                <div class="product-info">
+                  <p class="product-name">Stuffed Buns</p>
+                  <p class="product-price">$3.49 each</p>
+                  <p class="product-desc">Available with walnut, coconut, and date.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_eggless_croissants.jpeg" alt="Egg-free Croissants" />
+                <div class="product-info">
+                  <p class="product-name">Egg-free Croissants</p>
+                  <p class="product-price">$2.99 each</p>
+                  <p class="product-desc">Available with cheese, chocolate, and plain.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_kamaj_bread.jpeg" alt="Soft Flat Bread" />
+                <div class="product-info">
+                  <p class="product-name">Soft Flat Bread</p>
+                  <p class="product-price">$1.05 each</p>
+                  <p class="product-desc">Incredibly soft, light, and airy. Thin exterior, tan and chewy inside.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_lebanese_kaak.jpeg" alt="Lebanese Kaak" />
+                <div class="product-info">
+                  <p class="product-name">Lebanese Kaak</p>
+                  <p class="product-price">$1.99 each</p>
+                  <p class="product-desc">Chewy interior, crispy exterior. Commonly filled with za'atar, labneh, or cheese.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/plain_bread.jpeg" alt="Plain Bread" />
+                <div class="product-info">
+                  <p class="product-name">Plain Bread</p>
+                  <p class="product-price">$3.99 each</p>
+                  <p class="product-desc">With sesame seeds and black seeds.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_zaatar_manakeesh.jpeg" alt="Zaatar Manakeesh" />
+                <div class="product-info">
+                  <p class="product-name">Zaatar Manakeesh</p>
+                  <p class="product-desc">Middle Eastern flatbread topped with za'atar.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_cheese_fatayer.jpeg" alt="Cheese Fatayer" />
+                <div class="product-info">
+                  <p class="product-name">Cheese Fatayer</p>
+                  <p class="product-desc">Filled with cheese and parsley.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_spinach_fatayer.jpeg" alt="Spinach Fatayer" />
+                <div class="product-info">
+                  <p class="product-name">Spinach Fatayer</p>
+                  <p class="product-desc">Filled with fresh spinach, lemon juice, and pepper paste.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_beef_fatayer.jpeg" alt="Beef Fatayer" />
+                <div class="product-info">
+                  <p class="product-name">Beef Fatayer</p>
+                  <p class="product-desc">Filled with seasoned ground beef.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_soft_golden_pie.jpeg" alt="Soft Golden Baked Pie" />
+                <div class="product-info">
+                  <p class="product-name">Soft Golden Baked Pie</p>
+                  <p class="product-price">$8.99 each</p>
+                  <p class="product-desc">Available in different shapes and fillings upon request.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_mini_fatayer.jpeg" alt="Mini Fatayer" />
+                <div class="product-info">
+                  <p class="product-name">Mini Fatayer</p>
+                  <p class="product-price">From $44.99 · $52.99 with basket</p>
+                  <p class="product-desc">Perfect for gatherings. Assorted fillings.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_fresh_breads.jpeg" alt="Honeycomb Bread Twist Buns" />
+                <div class="product-info">
+                  <p class="product-name">Honeycomb Bread Twist Buns</p>
+                  <p class="product-desc">Golden Baked goods with a light, fluffy texture. Available with a variety of fillings.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_sesame_ring_bread.jpeg" alt="Sesame Ring Bread" />
+                <div class="product-info">
+                  <p class="product-name">Sesame Ring Bread</p>
+                  <p class="product-desc">Golden Baked goods with a light, fluffy texture. Available with a variety of fillings.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_sesame_stuffed_loaves.jpeg" alt="Sesame Stuffed Loaves" />
+                <div class="product-info">
+                  <p class="product-name">Sesame Stuffed Loaves</p>
+                  <p class="product-desc">Golden Baked goods with a light, fluffy texture. Available with a variety of fillings.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_braided_sesame_buns.jpeg" alt="Braided and Classic Sesame Buns" />
+                <div class="product-info">
+                  <p class="product-name">Braided and Classic Sesame Buns</p>                  <p class="product-desc">Golden Baked goods with a light, fluffy texture. Available with a variety of fillings.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_soft_plain_buns.jpeg" alt="Soft Plain Buns" />
+                <div class="product-info">
+                  <p class="product-name">Soft Plain Buns</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_assorted_baked_rolls.jpeg" alt="Assorted Baked Rolls" />
+                <div class="product-info">
+                  <p class="product-name">Assorted Baked Rolls</p>                  <p class="product-desc">Golden Baked goods with a light, fluffy texture. Available with a variety of fillings.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SWEETS -->
+          <div class="cat-panel" id="cat-sweets">
+            <button class="cat-back" onclick="showTiles()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              All Categories
+            </button>
+            <div class="product-grid">
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_pistachio_maamoul.jpeg" alt="Pistachio Maamoul" />
+                <div class="product-info">
+                  <p class="product-name">Pistachio Maamoul</p>                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_walnuts_maamoul.jpeg" alt="Walnuts Maamoul" />
+                <div class="product-info">
+                  <p class="product-name">Walnuts Maamoul</p>                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_maamoul_dates.jpeg" alt="Date Maamoul" />
+                <div class="product-info">
+                  <p class="product-name">Date Maamoul</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_cinnamon_rolls.jpeg" alt="Cinnamon Rolls" />
+                <div class="product-info">
+                  <p class="product-name">Cinnamon Rolls</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_petit_four.jpeg" alt="Petit Four" />
+                <div class="product-info">
+                  <p class="product-name">Petit Four</p>
+                </div>
+              </div>
+
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_harissa.jpeg" alt="Harissa" />
+                <div class="product-info">
+                  <p class="product-name">Harissa</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_halawer_al_jibn.jpeg" alt="Halawet AL Jibn" />
+                <div class="product-info">
+                  <p class="product-name">Halawet AL Jibn</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_lyalina_mini_cake.jpeg" alt="Lyalina Mini Cake" />
+                <div class="product-info">
+                  <p class="product-name">Lyalina Mini Cake</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_petit_four_pistachio.jpeg" alt="Pistachio Petit Four" />
+                <div class="product-info">
+                  <p class="product-name">Pistachio Petit Four</p>                  <p class="product-desc">Delicate butter cookies generously topped with crushed fresh pistachios.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_butter_cookies_assorted.jpeg" alt="Assorted Butter Cookies" />
+                <div class="product-info">
+                  <p class="product-name">Assorted Butter Cookies</p>                  <p class="product-desc">A generous mix of chocolate and vanilla butter cookies pressed into elegant shapes.</p>
+                </div>
+              </div>
+
+              <div class="product-card">
+                <img loading="lazy" src="images/p_date_semolina_cookies.jpeg" alt="Date Filled Semolina Cookies" />
+                <div class="product-info">
+                  <p class="product-name">Makrouta <span style="color:var(--amber);font-size:0.78rem;font-weight:700;">(no added sugar)</span></p>
+                  <p class="product-desc">Tender semolina shortbread packed with a rich, naturally sweet date filling.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- FOLLOW US -->
+          <div class="panel-follow-us">
+            <p class="panel-follow-us-label">Follow us</p>
+            <div class="panel-follow-us-icons">
+              <a href="https://instagram.com/momstaste42" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="https://www.tiktok.com/@moms.taste5" class="panel-social-icon" target="_blank" rel="noopener" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg></a>
+              <a href="https://www.facebook.com/people/Moms-Taste/61573925998958/" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ABOUT PANEL -->
+      <div class="tab-panel about" id="tab-about" role="tabpanel">
+        <div class="section-inner">
+          <div class="about-layout">
+            <div class="about-text">
+              <p class="section-label">Our Story</p>
+              <h2 class="section-title">The smell of dough<br>on a Friday morning.</h2>
+              <p>
+                Mom's Taste started not as a business, but as a habit — baking for family, for neighbors, for anyone who sat down long enough at my table. Every loaf still begins the same way: by hand, with patience, and with the honest intention of making something worth sharing. We work from a proper kitchen and deliver locally, but the heart of it remains the same as it always was.
+              </p>
+            </div>
+            <div class="about-image-wrap">
+              <img src="images/kitchen.jpg" alt="Baking in the kitchen" class="about-image" />
+            </div>
+          </div>
+
+          <div class="panel-follow-us">
+            <p class="panel-follow-us-label">Follow us</p>
+            <div class="panel-follow-us-icons">
+              <a href="https://instagram.com/momstaste42" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="https://www.tiktok.com/@moms.taste5" class="panel-social-icon" target="_blank" rel="noopener" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg></a>
+              <a href="https://www.facebook.com/people/Moms-Taste/61573925998958/" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT PANEL -->
+      <div class="tab-panel contact" id="tab-contact" role="tabpanel">
+        <div class="section-inner">
+          <p class="section-label">Place an Order</p>
+          <h2 class="section-title">Ready to order?</h2>
+          <p class="contact-sub">We accept <strong>orders throughout the week</strong>, with <strong>pickup on Saturdays</strong>.</p>
+          <p class="contact-sub"><strong>Large orders</strong> for events, gatherings, and holidays can be placed and picked up during the week with at least <strong>24 hours' notice</strong>.</p>
+          <p class="contact-sub">All orders are <strong>pickup only</strong>.</p>
+          <p class="contact-sub">A <strong>non-refundable deposit</strong> is required to confirm all orders.</p>
+
+<div class="contact-buttons">
+            <a href="https://wa.me/12265014912?text=Hello!%20I'd%20like%20to%20order%20from%20Mom's%20Taste%20%F0%9F%8D%9E" class="contact-btn btn-whatsapp" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.528 5.86L.057 23.003a.75.75 0 0 0 .94.94l5.144-1.47A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.71 9.71 0 0 1-4.96-1.362l-.356-.212-3.053.874.874-3.053-.212-.356A9.71 9.71 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+              </svg>
+              WhatsApp
+            </a>
+            <a href="mailto:momstastegoods@hotmail.com?subject=Order%20Inquiry%20-%20Mom%27s%20Taste" class="contact-btn btn-email" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email Us
+            </a>
+          </div>
+
+          <p class="contact-note">
+            Currently serving Kitchener–Waterloo &nbsp;·&nbsp; Pickup only
+          </p>
+
+          <div class="panel-follow-us">
+            <p class="panel-follow-us-label">Follow us</p>
+            <div class="panel-follow-us-icons">
+              <a href="https://instagram.com/momstaste42" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+              <a href="https://www.tiktok.com/@moms.taste5" class="panel-social-icon" target="_blank" rel="noopener" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg></a>
+              <a href="https://www.facebook.com/people/Moms-Taste/61573925998958/" class="panel-social-icon" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Mobile: bottom nav -->
+  <nav class="bottom-nav" aria-label="Page sections">
+    <button class="bottom-btn active" data-tab="home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Home
+    </button>
+    <button class="bottom-btn" data-tab="products">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+        <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+      </svg>
+      Products
+    </button>
+    <button class="bottom-btn" data-tab="about">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+      Our Story
+    </button>
+    <button class="bottom-btn" data-tab="contact">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      Order
+    </button>
+  </nav>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/12265014912?text=Hello!%20I'd%20like%20to%20order%20from%20Mom's%20Taste%20%F0%9F%8D%9E"
+     class="wa-float" target="_blank" rel="noopener" aria-label="Order via WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.122 1.528 5.86L.057 23.003a.75.75 0 0 0 .94.94l5.144-1.47A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.71 9.71 0 0 1-4.96-1.362l-.356-.212-3.053.874.874-3.053-.212-.356A9.71 9.71 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+  </a>
+
+  <script>
+    function switchTab(id) {
+      document.querySelectorAll('[data-tab]').forEach(btn => {
+        const active = btn.dataset.tab === id;
+        btn.classList.toggle('active', active);
+        if (btn.hasAttribute('aria-selected')) btn.setAttribute('aria-selected', active);
+      });
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'tab-' + id);
+      });
+      // scroll panel to top on switch
+      const panel = document.getElementById('tab-' + id);
+      if (panel) panel.closest('.main-content')?.scrollTo(0, 0);
+    }
+
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    function showCategory(cat) {
+      document.getElementById('cat-tiles').style.display = 'none';
+      document.querySelectorAll('.cat-panel').forEach(p => p.classList.toggle('active', p.id === 'cat-' + cat));
+      document.getElementById('tab-products').closest('.main-content')?.scrollTo(0, 0);
+    }
+
+    function showTiles() {
+      document.getElementById('cat-tiles').style.display = 'grid';
+      document.querySelectorAll('.cat-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-products').closest('.main-content')?.scrollTo(0, 0);
+    }
+  </script>
+
+</body>
+</html>
